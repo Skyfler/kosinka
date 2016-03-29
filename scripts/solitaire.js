@@ -727,7 +727,7 @@
 			
 			case 'temp':
 			
-				return true;
+				//return true;
 			
 				if (dropzone.cardsOnTop.length == 0) {
 					

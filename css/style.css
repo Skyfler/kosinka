@@ -1,0 +1,71 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+[data-component="solitaireContainer"] {
+	width: 1200px;
+	height: 100%;
+	padding: 0;
+	margin: 0 auto;
+	background: green;
+	position: relative;
+	overflow-x: hidden;
+	cursor: pointer;
+}
+
+[data-component="card"] {
+	width: 152px;
+	height: 216px;
+	background: white;
+	border-radius: 8px;
+	border: 1px solid black;
+	position: absolute;
+	font: bold 18px arial;
+	color: white;
+	padding-left: 20px;
+	text-transform: uppercase;
+}
+
+[data-component="card"].closed {
+	background-size: 100% 100%;
+	background-image: url("../backside.jpg");
+}
+
+[data-component="dropzone"] {
+	width: 152px;
+	height: 216px;
+	border: 1px solid black;
+	position: absolute;
+}
+
+ul,li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.menu {
+	background: #ccc;
+	border-width: 1px;
+	border-style: solid;
+	border-color: gray white white gray;
+	font-family: Arial;
+}
+
+.menu li {
+	display: inline-block;
+	cursor: pointer;
+	padding: 2px 10px;
+}
+
+.menu li:hover {
+	background: #c7f1ff;
+}

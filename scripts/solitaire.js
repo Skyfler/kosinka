@@ -308,6 +308,10 @@
 	
 	function autoCollectDecks(e) {
 		
+		if (gameEnd) {
+			return;
+		}
+		
 		e.preventDefault();
 		
 		var finalDropdileds = [];
@@ -498,8 +502,7 @@
 				placeCard(openedDeck.cardsOnTop[openedDeck.cardsOnTop.length - 1], closedDeck);
 			}
 			
-		}
-		
+		}		
 		
 	}
 
@@ -685,7 +688,7 @@
 			card.placedOn.cardsOnTop.length--;
 		}
 			
-		card.elem.style.zIndex = dropzone.cardsOnTop.length;
+		card.elem.style.zIndex = dropzone.cardsOnTop.length + 1;
 		card.elem.style.left = dropzone.elem.style.left;
 				
 		if (dropzone.type == 'temp') {

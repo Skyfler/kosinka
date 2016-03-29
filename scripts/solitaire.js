@@ -290,6 +290,7 @@
 		container.addEventListener('mousedown', mouseDownTrue);
 		container.addEventListener('mousedown', flipCardOnClosedDeck);
 		container.addEventListener('mousedown', openCardOnClick);
+		container.addEventListener('contextmenu', autoCollectDecks);
 		container.addEventListener('mouseup', mouseDownFalse);
 		container.addEventListener('mousemove', dragCard);
 		newGameBtn.addEventListener('click',startNewGame);
@@ -297,13 +298,58 @@
 		startNewGame();
 		
 	}
-
+	
 	function startNewGame() {
 		
 		gameEnd = false;
 		randomizeCards();
 		
 	}
+	
+	function autoCollectDecks(e) {
+		
+		e.preventDefault();
+		
+		var finalDropdileds = [];
+		var tempDropfields = [];
+		
+		for (var i = 0; i < dropfields.length; i++) {
+			
+			switch (dropfields[i].type) {
+				case 'temp':
+				case 'openedDeck':
+					tempDropfields.push(dropfields[i]);
+					break;
+				case 'final':
+					finalDropdileds.push(dropfields[i]);
+					break;
+			}
+			
+		}
+		
+		for (var i = 0; i < finalDropdileds.length; i++) {
+			for (var j = 0; j < tempDropfields.length; j++) {
+				
+				var lastCard = tempDropfields[j].cardsOnTop[tempDropfields[j].cardsOnTop.length - 1];
+
+				if (lastCard) {
+					if ((dropRuleCheck(lastCard, finalDropdileds[i]))&&(lastCard.visibility != 'closed')) {
+						
+						placeCard(lastCard,  finalDropdileds[i]);
+						if (isWin()) {
+							return;
+						}
+						i = 0;
+						j = -1;
+						
+					}
+				}
+				
+			}
+		}
+		
+	}
+
 
 	function createDropfields() {
 		
@@ -370,6 +416,7 @@
 		
 		gameEnd = true;
 		alert('Вы выйграли!');
+		return true;
 		
 	}
 
@@ -626,8 +673,7 @@
 		
 		dragedCardElem.hidden = false;
 		
-		if (currDropzone.type == 'final') {
-			console.log('isWin()');
+		if ((currDropzone)&&(currDropzone.type == 'final')) {
 			isWin();
 		}
 
@@ -681,7 +727,7 @@
 			
 			case 'temp':
 			
-				//return true;
+				return true;
 			
 				if (dropzone.cardsOnTop.length == 0) {
 					

@@ -464,7 +464,6 @@
 
 	}
 
-	/*Функция, возвращающая случайное целое между min и max*/
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
@@ -509,40 +508,39 @@
 	function openCard(card) {
 		
 		card.visibility = 'opened';
-		
-		switch (card.colour) {
+		card.elem.style.backgroundPosition = getBackgroundPosition(card.colour, card.weight);
+		card.elem.classList.remove('closed');
+
+	}
+
+	function getBackgroundPosition(colour, weight) {
+
+		var top, left;
+
+		left = weight * -100 + 100;
+		switch (colour) {
 			case 'spades':
-				var symb = '&#9824;';
+				top = -300;
 				break;
 			case 'clubs':
-				var symb = '&#9827;';
+				top = -100;
 				break;
 			case 'hearts':
-				var symb = '&#9829;';
+				top = 0;
 				break;
 			case 'diamonds':
-				var symb = '&#9830;';
+				top = -200;
 				break;
 		}
-		
-		card.elem.innerHTML = symb + ' ' + card.name;
-		card.elem.classList.remove('closed');
-		
-		if (checkCardColor(card) == 'red') {
-			card.elem.style.color = 'red';
-		} else {
-			card.elem.style.color = 'black';
-		}
-		
+
+		return left + '% ' + top + '%';
+
 	}
 
 	function closeCard(card) {
-		
 		card.visibility = 'closed';
-		card.elem.innerHTML = '';
 		card.elem.classList.add('closed');
-		card.elem.style.color = '';
-		
+		card.elem.backgroundPosition = '';
 	}
 
 	function mouseDownTrue(e) {
@@ -695,7 +693,7 @@
 			if (dropzone.cardsOnTop.length == 0) {
 				card.elem.style.top = parseFloat(dropzone.elem.style.top) + 'px';
 			} else if (dropzone.cardsOnTop[dropzone.cardsOnTop.length - 1].visibility == 'opened') {
-				card.elem.style.top = parseFloat(dropzone.cardsOnTop[dropzone.cardsOnTop.length - 1].elem.style.top) + 20 + 'px';
+				card.elem.style.top = parseFloat(dropzone.cardsOnTop[dropzone.cardsOnTop.length - 1].elem.style.top) + 25 + 'px';
 			} else {
 				card.elem.style.top = parseFloat(dropzone.cardsOnTop[dropzone.cardsOnTop.length - 1].elem.style.top) + 5 + 'px';
 			}

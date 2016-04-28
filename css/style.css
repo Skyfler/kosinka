@@ -10,40 +10,47 @@ html, body {
 	height: 100%;
 }
 
+html {
+	background: #00B600;
+}
+
 [data-component="solitaireContainer"] {
-	width: 1200px;
+	width: 1000px;
 	height: 100%;
 	padding: 0;
 	margin: 0 auto;
-	background: green;
+	/*background: green;*/
 	position: relative;
-	overflow-x: hidden;
-	cursor: pointer;
 }
 
 [data-component="card"] {
-	width: 152px;
-	height: 216px;
+	width: 120px;
+	height: 170px;
 	background: white;
-	border-radius: 8px;
+	border-radius: 11px;
 	border: 1px solid black;
 	position: absolute;
 	font: bold 18px arial;
 	color: white;
 	padding-left: 20px;
 	text-transform: uppercase;
+	background-image: url("../img/cards_sprite.jpg");
+	background-size: 1300% 400%;
+	overflow: hidden;
+	cursor: pointer;
 }
 
 [data-component="card"].closed {
 	background-size: 100% 100%;
-	background-image: url("../backside.jpg");
+	background-image: url("../img/card_backside.jpg");
 }
 
 [data-component="dropzone"] {
-	width: 152px;
-	height: 216px;
+	width: 120px;
+	height: 170px;
 	border: 1px solid black;
 	position: absolute;
+	background: rgba(0, 0, 0, 0.1);
 }
 
 ul,li {
@@ -53,19 +60,29 @@ ul,li {
 }
 
 .menu {
-	background: #ccc;
-	border-width: 1px;
-	border-style: solid;
-	border-color: gray white white gray;
+	width: 200px;
+	text-align: center;
+	background: #db6603;
+	border-radius: 0px 0px 10px 10px;
 	font-family: Arial;
+	color: white;
+	font-weight: bold;
+	position: relative;
+	z-index: 1000;
+	transition: top ease 0.5s;
+	top: -28px;
+}
+
+.menu:hover {
+	top: 0px;
 }
 
 .menu li {
-	display: inline-block;
 	cursor: pointer;
-	padding: 2px 10px;
+	padding: 4px 10px;
+	text-shadow: 0px 0px 3px black;
 }
 
-.menu li:hover {
+.menu li.menu-item:hover {
 	background: #c7f1ff;
 }

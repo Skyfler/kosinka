@@ -540,7 +540,7 @@
 	function closeCard(card) {
 		card.visibility = 'closed';
 		card.elem.classList.add('closed');
-		card.elem.backgroundPosition = '';
+		card.elem.style.backgroundPosition = '';
 	}
 
 	function mouseDownTrue(e) {
